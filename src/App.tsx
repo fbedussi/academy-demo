@@ -13,7 +13,7 @@ const App: React.FC = () => {
     fetch('https://assets.fc-dev.instore.oakley.com/assets/products/products.json')
       .then(res => res.json())
       .then(products => setProducts(products))
-  })
+  }, [])
   return (
     <Router history={history}>
       <Switch>
