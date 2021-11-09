@@ -14,6 +14,7 @@ const App: React.FC = () => {
       .then(res => res.json())
       .then(products => setProducts(products))
   }, [])
+
   return (
     <Router history={history}>
       <Switch>

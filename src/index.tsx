@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import store from './store/store'
 
 const theme = createTheme();
 
@@ -12,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
