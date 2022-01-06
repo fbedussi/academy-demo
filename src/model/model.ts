@@ -1,9 +1,17 @@
+import { Action, ThunkAction } from '@reduxjs/toolkit'
+
 import { Product } from './Product'
 
 export type FilterType = boolean | null
 
-export type StoreModel = {
+export type PlpSlice = {
   searchTerm: string
   filterType: FilterType
   data: Product[]
 }
+
+export type StoreModel = {
+  plp: PlpSlice
+}
+
+export type AppThunk = ThunkAction<void, StoreModel, unknown, Action<string>>

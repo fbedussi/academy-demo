@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Button, Grid, TextField } from '@mui/material'
 
-import { setSearchTerm } from '../store/actions'
+import plpActions from '../store/actions'
 import { selectSearchTerm } from '../store/selectors'
 
 type Props = {
@@ -16,10 +16,10 @@ const SearchBox: React.FC<Props> = () => {
   return (
     <Grid container spacing={2} alignItems="center" pt={1} pb={2}>
       <Grid item xs={8}>
-        <TextField label="search" variant="outlined" fullWidth value={searchTerm} onChange={(ev) => dispatch(setSearchTerm(ev.target.value.toLowerCase()))} />
+        <TextField label="search" variant="outlined" fullWidth value={searchTerm} onChange={(ev) => dispatch(plpActions.setSearchTerm(ev.target.value.toLowerCase()))} />
       </Grid>
       <Grid item xs={4}>
-        <Button variant="contained" onClick={() => dispatch(setSearchTerm(''))}>Reset</Button>
+        <Button variant="contained" onClick={() => dispatch(plpActions.setSearchTerm(''))}>Reset</Button>
       </Grid>
     </Grid>
   )

@@ -1,22 +1,15 @@
-import { FilterType } from '../model/model'
-import { Product } from '../model/Product'
+import { AppThunk } from '../model/model'
+import { slice } from './slice'
 
-type LoadDataAction = { type: 'LOAD_DATA', data: Product[] };
-export const loadData = (data: Product[]): LoadDataAction => ({
-  type: 'LOAD_DATA',
-  data,
-});
+const fetchData = (): AppThunk => dispatch => {
+  fetch('https://assets.fc-dev.instore.oakley.com/assets/products/products.json')
+    .then(res => res.json())
+    .then(products => dispatch(slice.actions._loadData(products)))
+}
 
-type SetSearchTermAction = { type: 'SET_SEARCH_TERM', searchTerm: string };
-export const setSearchTerm = (searchTerm: string): SetSearchTermAction => ({
-  type: 'SET_SEARCH_TERM',
-  searchTerm,
-});
+const plpActions = {
+  ...slice.actions,
+  fetchData,
+}
 
-type SetFilterTypeAction = { type: 'SET_FILTER_TYPE', filterType: FilterType };
-export const setFilterType = (filterType: FilterType): SetFilterTypeAction => ({
-  type: 'SET_FILTER_TYPE',
-  filterType,
-});
-
-export type Action = SetSearchTermAction | SetFilterTypeAction | LoadDataAction;
+export default plpActions
