@@ -6,16 +6,12 @@ import { Grid } from '@mui/material'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import ProductCard from '../components/ProductCard'
-import { Product } from '../model/Product'
-import { selectFilterType, selectSearchTerm } from '../store/selectors'
+import { selectFilterType, selectProducts, selectSearchTerm } from '../store/selectors'
 
-type Props = {
-  products: Product[]
-}
-
-const Plp: React.FC<Props> = ({ products }) => {
+const Plp: React.FC = () => {
   const searchTerm = useSelector(selectSearchTerm)
   const inStock = useSelector(selectFilterType)
+  const products = useSelector(selectProducts)
 
   return (
     <Grid container direction="column" minHeight="100vh">

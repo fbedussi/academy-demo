@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Route, Router, Switch } from 'react-router-dom'
 
 import history from './history'
-import { Product } from './model/Product'
 import Pdp from './pages/Pdp'
 import Plp from './pages/Plp'
+import { loadData } from './store/actions'
 
 const App: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     fetch('https://assets.fc-dev.instore.oakley.com/assets/products/products.json')
       .then(res => res.json())
-      .then(products => setProducts(products))
-  }, [])
+      .then(products => dispatch(loadData(products)))
+  }, [dispatch])
 
   return (
     <Router history={history}>
       <Switch>
         <Route path="/product/:upc">
-          <Pdp products={products} />
+          <Pdp />
         </Route>
         <Route path="/">
-          <Plp products={products} />
+          <Plp />
         </Route>
       </Switch>
     </Router>
