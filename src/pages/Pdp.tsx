@@ -1,15 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 
 import ProductCard from '../components/ProductCard'
-import { Product } from '../model/Product'
+import { selectProducts } from '../store/selectors'
 
-type Props = {
-  products: Product[]
-}
-
-const Pdp: React.FC<Props> = ({ products }) => {
+const Pdp: React.FC = () => {
   const { upc } = useParams<{ upc: string }>()
+
+  const products = useSelector(selectProducts)
+
   const product = products.find(product => product.UPC === upc)
   return product ? (
     <ProductCard product={product} />
