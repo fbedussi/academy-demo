@@ -1,13 +1,10 @@
 import { Action, ThunkAction } from '@reduxjs/toolkit'
 
-import { Product } from './Product'
-
 export type FilterType = boolean | null
 
 export type PlpSlice = {
   searchTerm: string
   filterType: FilterType
-  data: Product[]
 }
 
 export type StoreModel = {

@@ -1,14 +1,25 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 
+import { Alert, CircularProgress } from '@mui/material'
+
 import ProductCard from '../components/ProductCard'
-import { selectProducts } from '../store/selectors'
+import { useGetProductsQuery } from '../services/products'
 
 const Pdp: React.FC = () => {
   const { upc } = useParams<{ upc: string }>()
 
-  const products = useSelector(selectProducts)
+  const { data, error, isLoading } = useGetProductsQuery()
+
+  if (error) {
+    return <Alert severity="error">Error Fetching Products</Alert>
+  }
+
+  if (isLoading) {
+    return <CircularProgress />
+  }
+
+  const products = data || []
 
   const product = products.find(product => product.UPC === upc)
   return product ? (
