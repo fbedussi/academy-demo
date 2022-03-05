@@ -10,7 +10,7 @@ import { useGetProductsQuery } from '../services/products'
 import { selectFilterType, selectSearchTerm } from '../store/selectors'
 
 const Plp: React.FC = () => {
-  const { data, error, isLoading } = useGetProductsQuery()
+  const { data, error, isLoading } = useGetProductsQuery('cc')
 
   const searchTerm = useSelector(selectSearchTerm)
   const inStock = useSelector(selectFilterType)
